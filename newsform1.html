@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your news</title>
+</head>
+<body>
+    <h1>خبر بھیجیں </h1>
+    <form id="emailForm">
+        <label for="email">ای میل:</label><br>
+        <input type="email" id="email" name="user_email" required><br><br>
+
+        <label for="subject"خبر کی سرخی / مین لیڈ:</label><br>
+        <input type="text" id="subject" name="subject" required><br><br>
+
+        <label for="message">خبر کا متن :</label><br>
+        <textarea id="message" name="message" required></textarea><br><br>
+
+        <label for="file">تصویر شامل کریں:</label><br>
+        <input type="file" id="file" name="file"><br><br>
+
+        <button type="submit">خبر بھیجیں</button>
+    </form>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("city52news");
+        })();
+
+        document.getElementById('emailForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var formData = new FormData(this);
+            formData.append('service_id', 'service_907hmeh');
+            formData.append('template_id', 'template_b4z0pvl');
+            formData.append('user_id', 'city52news');
+
+            emailjs.sendForm('service_907hmeh', 'template_b4z0pvl', this)
+                .then(function(response) {
+                    alert('خبر کامیابی سے بھیجی گئی!');
+                }, function(error) {
+                    alert(' خبر بھیجنے میں مسئلہ ہوا۔');
+                });
+        });
+    </script>
+</body>
+</html>
